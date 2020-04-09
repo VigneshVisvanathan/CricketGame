@@ -1,0 +1,67 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Cricket Game results</title>
+	
+</head>
+
+<body>
+        <div style="width: 100%; height: 350px; background-image:url(cricbackground.jpg); background-size:cover; float:left;"></div>
+
+        
+		
+<script>
+var player1 =localStorage.getItem("p1");
+var player2 =localStorage.getItem("p2");
+var run1=JSON.parse(localStorage.getItem("r1"));
+var run2=JSON.parse(localStorage.getItem("r2"));
+var balls1=JSON.parse(localStorage.getItem("b1"));
+var balls2=JSON.parse(localStorage.getItem("b2"));
+var team1=JSON.parse(localStorage.getItem("t1"));
+var team2=JSON.parse(localStorage.getItem("t2"));
+
+</script>
+
+<div style="width: 50%; height: 250px; float:left; background-color:#F0E68C; text-align:center;">
+<script>
+
+document.write("<h4>Team1</h4><br>")
+
+for (i=0;i<balls1.length;i++){
+	document.write("Player:"+Object.keys(team1)[i]+"&nbsp&nbsp&nbsp&nbsp&nbspRuns:"+run1[i]+"&nbsp&nbsp&nbsp&nbspBalls:"+balls1[i]+"<br>"); 
+	}
+
+
+
+</script>
+  </div>
+
+
+<div style="width: 50%; height:250px; float:right; background-color:#ADD8E6; text-align:center;">
+
+<script>
+
+
+document.write("<h4>Team2</h4><br>")
+for (i=0;i<balls2.length;i++){
+	document.write("Player:"+Object.keys(team2)[i]+"&nbsp&nbsp&nbsp&nbsp&nbspRuns:"+run2[i]+"&nbsp&nbsp&nbsp&nbspBalls:"+balls2[i]+"<br>"); 
+	}
+</script>
+</div>
+<div>
+<center>
+<script>
+if(player1>player2){
+document.write("<h3> Austrailia is winner Total:</h3>",player1)}
+else{
+document.write("<h3> India is winner Total:</h3>",player2)}
+</script>
+</center>
+</div>
+
+
+
+
+</body>
+</html>

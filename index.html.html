@@ -1,0 +1,212 @@
+
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Cricket Game</title>
+</head>
+<body style="background-image:url(cricbackground.jpg);background-size:cover;color:yellow;">
+
+	<p><h1> 5 over cricket </h1></p>
+
+<div style="height:100%;">
+  <h3>Players press below to play</h3>
+ 
+
+<div style=" width:50%;background-size:cover; ">
+  
+<form>
+  <button type="button" onclick="play1()" id="button1">StrikeTeam1</button><br>
+  
+  Current Player:<br>
+  <input type="text" name="current player" id="cplayer1"><br>
+  
+  score:<br>
+  <input type="text" name="player1" id="player1"><br>
+  
+  Current player runs:<br>
+  <input type="text" name="cp1runs" id="cp1runs"><br>
+  
+  Current player balls:<br>
+  <input type="text" name="cp1balls" id="cp1balls"><br>
+  
+  Wickets:<br>
+  <input type="text" name="wickets1" id="wickets1"><br>
+
+  balls:<br>
+  <input type="text" name="ball1" id="ball1"><br>
+   
+  Total score:<br>
+  <input type="text" name="player1tot" id="player1tot"><br>
+  
+  Total overs:<br>
+  <input type="text" name="ball1total" id="ball1tot"><br>
+  
+  <br>
+  <br>
+  </form>
+  </div>
+  
+  
+  <div style="width:50%;float:right;height:100%;color:#00ffff;">
+  
+ 
+<form>
+  
+  <button type="button" onclick="play2()" id="button2">StrikeTeam2</button><br>
+
+  Current Player:<br>
+  <input type="text" name="current player2" id="cplayer2"><br>
+  
+  score:<br>
+  <input type="text" name="player2" id="player2"><br>
+  
+  Current player runs:<br>
+  <input type="text" name="cp2runs" id="cp2runs"><br>
+  
+  Current player balls:<br>
+  <input type="text" name="cp2balls" id="cp2balls"><br>
+  
+  Wickets:<br>
+  <input type="text" name="wickets2" id="wickets2"><br>
+
+  balls:<br>
+  <input type="text" name="ball2" id="ball2"><br>
+   
+  Total score:<br>
+  <input type="text" name="player2tot" id="player2tot"><br>
+  
+  Total overs:<br>
+  <input type="text" name="ball2total" id="ball2tot"><br>
+</form>
+</div>
+</div>
+<br>
+<br>
+
+<form>
+<a href="cricketgamescorecard.html">
+<button type="button"
+id="result">result
+</button>
+</a>
+</form>
+<script>
+
+var players1 = {"bret lee":[], "gilchrist":[], "ricky":[], "ponting":[], "adam":[], "don":[], "bradman":[], "steve":[],"smith":[], "brendan":[]};
+var ball1=0;
+let overs1=0;
+var player1balls=0;
+var player1runs=0;
+var wickets1p=0;
+var total1=0;
+var runloader1=[];
+var ballloader1=[];
+
+var players2 = {"dhoni":[],"rohit":[],"Suryakumar yadav":[], "Ishan Kishan":[],"virat":[], "Hardik Pandya":[], "krunal pandya":[],"Rahul chahar":[],"Jasprit Bumrah":[],"kohli":[]}
+var ball2=0;
+var total2=0;
+var overs2=0;
+var player2balls=0;
+var player2runs=0;
+var wickets2p=0;
+var runloader2=[];
+var ballloader2=[];
+document.getElementById("button2").disabled=true;
+
+var play1= function(){
+run=Math.floor((Math.random() * 10)%7);
+total1=total1+run;
+ball1++
+overs1=Math.trunc(ball1/6) + parseFloat(((ball1%6)/10).toFixed(1));
+player1balls++
+player1runs=run+player1runs;
+document.getElementById("cp1balls").value=player1balls;
+document.getElementById("cp1runs").value=player1runs;
+
+if(run==0 || player1balls==6){
+runloader1.push(player1runs);
+ballloader1.push(player1balls);
+wickets1p++
+player1balls=0;
+player1runs=0;
+
+}
+currentpl1=Object.keys(players1)[wickets1p]
+console.log(runloader1);
+console.log(ballloader1);
+
+if(ball1>=30 || wickets1p==9){
+document.getElementById("button1").disabled=true;
+document.getElementById("button2").disabled=false;
+
+}
+
+document.getElementById("cplayer1").value=currentpl1;
+document.getElementById("wickets1").value=wickets1p;
+document.getElementById("player1").value=run;
+document.getElementById("player1tot").value=total1;
+document.getElementById("ball1").value=ball1;
+document.getElementById("ball1tot").value=overs1;
+localStorage.setItem("p1",total1);
+localStorage.setItem("r1",JSON.stringify(runloader1))
+localStorage.setItem("b1",JSON.stringify(ballloader1))
+localStorage.setItem("t1",JSON.stringify(players1))
+
+}
+
+var play2= function(){
+run=Math.floor((Math.random() * 10)%7);
+total2=total2+run;
+ball2++
+overs2=Math.trunc(ball2/6) + parseFloat(((ball2%6)/10).toFixed(1));
+player2balls++
+player2runs=run+player2runs;
+document.getElementById("cp2balls").value=player2balls;
+document.getElementById("cp2runs").value=player2runs;
+
+if(run==0 || player2balls==6){
+runloader2.push(player2runs);
+ballloader2.push(player2balls);
+wickets2p++
+player2balls=0;
+player2runs=0;
+
+}
+currentpl2=Object.keys(players2)[wickets2p]
+console.log(runloader2);
+console.log(ballloader2);
+
+
+if(ball2>=30 || wickets2p==9){
+document.getElementById("button2").disabled=true;
+
+}
+if(total2>total1){
+document.getElementById("button2").disabled=true;
+runloader2.push(player2runs);
+ballloader2.push(player2balls);
+
+
+}
+
+
+
+document.getElementById("cplayer2").value=currentpl2;
+document.getElementById("wickets2").value=wickets2p;
+document.getElementById("player2").value=run;
+document.getElementById("player2tot").value=total2;
+document.getElementById("ball2").value=ball2;
+document.getElementById("ball2tot").value=overs2;
+localStorage.setItem("p2",total2);
+localStorage.setItem("r2",JSON.stringify(runloader2))
+localStorage.setItem("b2",JSON.stringify(ballloader2))
+localStorage.setItem("t2",JSON.stringify(players2))
+}
+
+
+
+
+</script>
+</body>
+</html>
